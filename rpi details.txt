@@ -7,3 +7,13 @@ pi- username
 192.168.39.12 - vnc
 ....
 systemctl status mosquitto.service
+...
+right usb port- com6
+left usb port- com3
+...
+28.3588° N, 75.5880° E
+N- latitude
+E- Longitude
+...
+links-
+https://www.instructables.com/How-to-Use-MQTT-With-the-Raspberry-Pi-and-ESP8266/
