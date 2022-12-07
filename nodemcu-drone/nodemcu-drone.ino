@@ -8,6 +8,9 @@ const char* ssid = "OnePlus7Pro";
 const char* wifi_password = "Alright10";
 double lat = 28.3588; 
 double longi = 75.5880;
+//for secure connection
+const char* username = "drone";
+const char* password = "drone123";
 
 // MQTT
 // Make sure to update this for your own MQTT Broker!
@@ -30,7 +33,7 @@ void setup() {
   Serial.begin(115200);
 
   Serial.print("Connecting to ");
-  Serial.println(ssid);
+  //Serial.println(ssid);
 
   // Connect to the WiFi
   WiFi.begin(ssid, wifi_password);
@@ -48,7 +51,7 @@ void setup() {
 
   // Connect to MQTT Broker
   // client.connect returns a boolean value to let us know if the connection was successful.
-  if (client.connect(clientID)) {
+  if (client.connect(clientID, username, password)) {
     Serial.println("Connected to MQTT Broker!");
   }
   else {
