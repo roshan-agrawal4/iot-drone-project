@@ -8,11 +8,13 @@ from firebase import firebase
 
 mydb = firebase.FirebaseApplication('https://drone-system-iot-default-rtdb.firebaseio.com/', None)
 # Don't forget to change the variables for the MQTT broker!
+mqtt_username = "drone"
+mqtt_password = "drone123"
 mqtt_topic = "test"
 mqtt_broker_ip = "169.254.39.31"
 
 client = mqtt.Client()
-
+client.username_pw_set(mqtt_username, mqtt_password)
 # These functions handle what happens when the MQTT client connects
 # to the broker, and what happens then the topic receives a message
 def on_connect(client, userdata, flags, rc):
@@ -21,19 +23,22 @@ def on_connect(client, userdata, flags, rc):
     
     # Once the client has connected to the broker, subscribe to the topic
     client.subscribe(mqtt_topic)
-  
+coord=["28.3588", "0", "100"]
 def on_message(client, userdata, msg):
     # This function is called everytime the topic is published to.
     # If you want to check each message, and do something depending on
     # the content, the code to do this should be run in this function
     dat=str((msg.payload).decode())
+    
     coord=dat.split()
     
     #long=str(msg.payload)
     #print("Topic: ", msg.topic + "\nMessage: " + str(msg.payload))
-    print("\nLatitude: " + coord[0] + " Longitude: "+ coord[1])
+    print("\nLatitude: " + coord[0] + " Longitude: "+ coord[1]+ " Obstacle dist: "+ coord[2])
     data2 = {"Latitude": coord[0], "Longitude": coord[1]}
+    data3={"Obst_dist": coord[2]}
     mydb.post('/gps/coordinates', data2)
+    mydb.post('/ultrasonic', data3)
     #print("Hello")
     # The message itself is stored in the msg variable
     # and details about who sent it are stored in userdata

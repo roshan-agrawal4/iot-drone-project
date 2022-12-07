@@ -17,3 +17,7 @@ E- Longitude
 ...
 links-
 https://www.instructables.com/How-to-Use-MQTT-With-the-Raspberry-Pi-and-ESP8266/
+...
+mosquitto login-
+username- drone
+password- drone123

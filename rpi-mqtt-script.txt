@@ -1,2 +1,4 @@
 systemctl status mosquitto.service
 mosquitto_sub -d -t test
+mosquitto_sub -d -u drone -P drone123 -t test
+mosquitto_pub -d -u drone -P drone123 -t test -m "Hello, World!"

@@ -11,6 +11,14 @@ double longi = 75.5880;
 //for secure connection
 const char* username = "drone";
 const char* password = "drone123";
+//ultrasonic variables
+const int trigPin = D5;   
+ const int echoPin = D6;   
+ long duration;  
+ double distance=100; 
+ int flag = 1;
+ double prev = 100.0;
+
 
 // MQTT
 // Make sure to update this for your own MQTT Broker!
@@ -25,7 +33,9 @@ WiFiClient wifiClient;
 PubSubClient client(mqtt_server, 1883, wifiClient); // 1883 is the listener port for the Broker
 
 void setup() {
-
+  //for ultrasonic
+  pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output  
+ pinMode(echoPin, INPUT); // Sets the echoPin as an Input  
 
   // Begin Serial on 115200
   // Remember to choose the correct Baudrate on the Serial monitor!
@@ -62,16 +72,46 @@ void setup() {
 
 void loop() {
 
+  //ultrasonic
+   digitalWrite(trigPin, LOW);  
+ delayMicroseconds(2);  
+ // Sets the trigPin on HIGH state for 10 micro seconds  
+ digitalWrite(trigPin, HIGH);  
+ delayMicroseconds(10);  
+ digitalWrite(trigPin, LOW);  
+ // Reads the echoPin, returns the sound wave travel time in microseconds  
+ duration = pulseIn(echoPin, HIGH);  
+ // Calculating the distance  
+ distance= duration*0.034/2.0;
+ if (distance > 400.0 && flag){
+  flag = 0;
+  distance = 100;  
+ }
+ if (distance < 400){
+  prev = distance;
+ }
+ 
+ if (distance > 400) {
+  distance = prev;
+ }
+ // Prints the distance on the Serial Monitor  
+ Serial.print("Distance: ");  
+ Serial.println(distance);  
+ 
+//gps code
   char output1[50];
   char output2[50];
+  char output3[50];
   char out[50];
-  char comma[] = " ";
+  char space[] = " ";
 
   snprintf(output1, 50, "%f", lat);
   snprintf(output2, 50, "%f", longi);
-
-  strcat(output1, comma);
+  snprintf(output3, 50, "%f", distance);
+  strcat(output1, space);
   strcat(output1, output2);
+  strcat(output1, space);
+  strcat(output1, output3);
 
   //float longi = strtod(longitudes, longitude);
   ////snprintf(end, 50, "%f", number);

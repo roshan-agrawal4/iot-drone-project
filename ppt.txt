@@ -1,0 +1,9 @@
+why ultrasonic giving bt?
+They DO NOT measure farther than about 70 feet (21 meters). They DO NOT measure at very high repetition rates. Due to speed of sound limitations the fastest rate is 200 Hz at a max distance of about 24 inches.
+
+using 2 nodemcu on same drone- one for gps other for ultrasonic-
+need 2 mqtt
+
+mqtt is scalable
+
+we have removed erroneous >400 reading
