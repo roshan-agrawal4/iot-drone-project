@@ -1,0 +1,9 @@
+raspberrypi- hostname
+pi- username
+123pi
+
+169.254.39.31
+....
+192.168.39.12 - vnc
+....
+systemctl status mosquitto.service

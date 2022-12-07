@@ -1,0 +1,2 @@
+systemctl status mosquitto.service
+mosquitto_sub -d -t test
