@@ -5,6 +5,7 @@ Written for my Instructable - "How to use MQTT with the Raspberry Pi and ESP8266
 """
 import paho.mqtt.client as mqtt
 from firebase import firebase
+import datetime;
 
 mydb = firebase.FirebaseApplication('https://drone-system-iot-default-rtdb.firebaseio.com/', None)
 # Don't forget to change the variables for the MQTT broker!
@@ -12,6 +13,7 @@ mqtt_username = "drone"
 mqtt_password = "drone123"
 mqtt_topic = "test"
 mqtt_broker_ip = "169.254.39.31"
+
 
 client = mqtt.Client()
 client.username_pw_set(mqtt_username, mqtt_password)
@@ -31,13 +33,14 @@ def on_message(client, userdata, msg):
     dat=str((msg.payload).decode())
     
     coord=dat.split()
-    
+    ct = datetime.datetime.now()
     #long=str(msg.payload)
     #print("Topic: ", msg.topic + "\nMessage: " + str(msg.payload))
-    print("\nLatitude: " + coord[0] + " Longitude: "+ coord[1]+ " Obstacle dist: "+ coord[2])
-    data2 = {"Latitude": coord[0], "Longitude": coord[1]}
-    data3={"Obst_dist": coord[2]}
-    mydb.post('/gps/coordinates', data2)
+    print("\nLatitude: " + coord[0] + " Longitude: "+ coord[1]+ " Obstacle dist: "+ coord[2]+" timestamp:"+ str(ct))
+    data2 = {"Latitude": coord[0], "Longitude": coord[1], "timestamp": str(ct)}
+    data3={"Obst_dist": coord[2], "timestamp": str(ct)}
+    
+    mydb.post('/gps', data2)
     mydb.post('/ultrasonic', data3)
     #print("Hello")
     # The message itself is stored in the msg variable
