@@ -1,0 +1,284 @@
+{% comment %} <!doctype html>
+<html lang="en">
+
+<head>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<script>      
+  async function fetchData() {
+    $.ajax({
+      url: "http://127.0.0.1:8000/",
+      method: "GET",
+      success: function(data) {
+
+        $("#Latitude").html(data.Latitude);
+        $("#Longitude").html(data.Longitude);
+      }
+    });
+  }
+
+setInterval(fetchData, 2000);
+</script>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
+    <div class="container-fluid">
+      <h2> <a class="navbar-brand" href="#">Drone Monitoring System</a></h2>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div class="mx-2">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#home"> Home</a>
+            </li>
+          </div>
+          <div class="mx-1">
+            <li class="nav-item">
+              <a class="nav-link" href="#address">Location</a>
+            </li>
+          </div>
+          <div class="mx-1">
+            <li class="nav-item">
+              <a class="nav-link" href="#weather">Weather</a>
+            </li>
+          </div>
+          <div class="mx-1">
+            <li class="nav-item">
+              <a class="nav-link" href="#others">Others</a>
+            </li>
+          </div>
+
+        </ul>
+
+        <div class="mx-2">
+          <button class="btn btn-danger"><a class="nav-link " href="/home">Sign Out</a></button>
+           </div>
+    
+      </div>
+
+    </div>
+  </nav>
+
+
+
+
+
+  <!--  signout Modal -->
+  <div class="modal fade" id="signoutModal" tabindex="-1" role="dialog" aria-labelledby="signoutModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false" >
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner" id="home">
+      <div class="carousel-item active">
+        <img style="opacity: 0.7" src="https://media.wired.com/photos/59264bb5f3e2356fd8008c6e/191:100/pass/DroneHP_GettyImages-599365398.jpg"
+          width="1400" height="700" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+      
+          <a class="nav-link " href="#address"><h3 class="text-dark">Location-Monitoring</h3></a>
+          <p class="text-dark">Get the exact location of your drone on a map!</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img style="opacity: .9"
+          src="https://imgs.search.brave.com/c6-pYslnpZEBOccQJHqhHUgeRRaWf21XUOJGNwYpEMA/rs:fit:1200:1200:1/g:ce/aHR0cDovL3Jlc2Vh/cmNoLm5vYWEuZ292/L3NpdGVzL29hci9F/YXN5R2FsbGVyeUlt/YWdlcy8xMi8yMzEv/V2luZF9GYXJtX01v/cmd1ZUZpbGUuanBn"
+          width="1400" height="700" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <a class="nav-link" href="#weather"><h3>Real-Time Weather</h3></a>
+          <p> Know about the Precise climatic conditions around your drone on your fingertips!</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img style="opacity: 0.7"
+          src="https://www.allerin.com/wp-blog/wp-content/uploads/2020/06/IoT-sensors.jpg"
+          width="1400" height="700" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+      
+          <a class="nav-link" href="#others"><h3><span class="text-dark">Sensors-Involved</h3></span></a>
+          <p class="text-dark"> Ultrasonic sensor used for obstacle detection</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <section class="services py-5 bg-light" id="address">
+    <div class="container">
+      <div class="text-center my-5 ">
+        <h1 data-aos="fade-up" data-aos-offst="200">Address<span class="text-primary"> Geocoding</span></h1>
+        <hr / class="w-25 m-auto">
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-12 mx-auto" data-aos="fade-left" data-aos-offst="200">
+          <div class="card" style="width: 30rem; height: 30rem;">
+            <div class="card-body">
+              
+              <h2 class="card-title text-center">Latitude</h2>
+              <p class="card-text" id="Latitude">
+                {{Latitude}}</p>
+             
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-lg-4 col-12 mx-auto" data-aos="fade-right" data-aos-offst="200">
+          <div class="card bg-primary text-white" style="width: 30rem; height: 30rem;">
+            <div class="card-body">
+              <i></i>
+              <h2 class="card-title text-center">Longitude</h2>
+              <p class="card-text" id="Longitude">
+                {{Longitude}}</p>
+             
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id='map' style='width:100%; height: 600px;' data-aos="zoom-in" data-aos-offst="200"></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiaGFyc2hpdHNpbmdoYXNwYWwiLCJhIjoiY2w2bjg5MjViMGF2dTNjb2Z0Mjhnbjl3cyJ9.JXusY7N-DCr-eB19tMU1uQ';
+const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
+    center: [50,70.1], // starting position [lng, lat]
+    zoom: 1.5, // starting zoom
+});
+const marker = new mapboxgl.Marker()
+ 
+    .setLngLat([50,70.1])
+    .setPopup(new mapboxgl.Popup().setHTML("<p>Drone is here</p>"))
+    .addTo(map);
+
+</script>
+
+
+  <section class="services py-5 bg-light" id="weather">
+    <div class="container">
+      <div class="text-center my-5">
+        <h1 data-aos="fade-up" data-aos-offst="200">Weather<span class="text-primary"> Forecasting</span></h1>
+        <hr / class="w-25 m-auto">
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-12 mx-auto" data-aos="zoom-in" data-aos-offst="200">
+          <div class="card" style="width: 30rem; height: 30rem;">
+            <div class="card-body">
+              
+              <h2 class="card-title text-center">Temperature</h2>
+              <p class="card-text">
+                content.</p>
+             
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-lg-4 col-12 mx-auto" data-aos="zoom-in" data-aos-offst="200">
+          <div class="card bg-primary text-white" style="width: 30rem; height: 30rem;">
+            <div class="card-body">
+              <i></i>
+              <h2 class="card-title text-center">Humidity</h2>
+              <p class="card-text">
+                content.</p>
+             
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="services py-5 bg-light" id="others">
+    <div class="container">
+      <div class="text-center my-5">
+        <h1 data-aos="fade-up" data-aos-offst="200">Additional<span class="text-primary"> Info</span></h1>
+        <hr / class="w-25 m-auto">
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-12 mx-auto" data-aos="flip-up" data-aos-offst="200">
+          <div class="card" style="width: 30rem;  height: 30rem;">
+            <div class="card-body bg-primary">
+              
+              <h2 class="text-center card-title text-light">Proximity</h2>
+              <p class="card-text text-light">
+                content.</p>
+             
+            </div>
+          </div>
+        </div>
+
+       
+
+      </div>
+    </div>
+  </section>
+
+  
+  <footer class="mt-auto text-dark">
+    <p><center>&copy;Drone_Networking</center> </p>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+    crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+</body>
+
+</html> {% endcomment %}

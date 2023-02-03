@@ -1,0 +1,12 @@
+body {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://media.istockphoto.com/id/1319782716/vector/holiday-background-art-abstract-wave-bright-wallpaper.jpg?s=612x612&w=0&k=20&c=rsMxHvF8qJRipxmoqc27-zM2YBskHOJcsicPPqODfeY=");
+    background-size: cover;
+    background-position: center;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+.cover-container {
+  max-width: 50vw;
+}

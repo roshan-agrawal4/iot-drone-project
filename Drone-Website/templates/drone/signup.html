@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRONE_NETWORKING</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link href="{% static 'css/signup.css' %}" rel="stylesheet" >
+</head>
+
+<body class="d-flex text-center text-white bg-dark">
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                <div class="card shadow">
+                    <img src="https://media.istockphoto.com/id/1306713383/photo/drone-in-soybean-crop.jpg?s=612x612&w=0&k=20&c=uKPau8x4GcsvhTJGQzsm8FeUDUlG9tbchLxkXeDZS_8="
+                        alt="" class="card-img-top" />
+                    <div class="card-body text-dark">
+                        <h5 class="card-title">Register</h5>
+                        <form action="/signup" method="POST" >
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label class="form-label" for="">Username</label>
+                                <input class="form-control" type="text" id="username" name="username" required autofocus>
+                                <div class="invalid-feedback">
+                                    This is required field!
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Email ID</label>
+                                <input class="form-control" type="text" id="email" name="email" required autofocus>
+                                <div class="invalid-feedback">
+                                    This is required field!
+                                </div>
+                            </div>
+                           
+                            <div class="mb-3">
+                                <label class="form-label" for="">Password</label>
+                                <input class="form-control" type="password" id="password" name="password" required>
+                                <div class="invalid-feedback">
+                                    This is required field!
+                                </div>
+                            </div>
+                            <button class="btn btn-success btn-block">Register</button>
+                        </form>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+</body>
+</html>
